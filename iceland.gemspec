@@ -9,9 +9,11 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Stefan Vignir']
   spec.email         = ['stefanvignir@stefanvignir.is']
 
-  spec.summary       = 'Handles the Icelandic "kennitala" identification scheme'
-  spec.description   = 'Parses "kennitala" identification numbers. '\
-                       'Figures out dates and ages, and sanitizes as well.'
+  spec.summary       = 'Handles the Icelandic "kennitala" identification '\
+                       'scheme and postal codes'
+  spec.description   = 'Adds the Kennitala class. Figures out dates and ages, '\
+                       'and sanitizes "kennitala" objects and looks up '\
+                       'Icelandic postal codes.'
   spec.homepage      = 'https://github.com/stefanvignir/iceland_gem'
   spec.license       = 'MIT'
 
