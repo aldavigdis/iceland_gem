@@ -85,6 +85,7 @@ k.age
 ## Todo
 
 * Administrative Divisions
+* A Kennitala faker, similar to ffaker and ffaker
 
 ## About the data
 
