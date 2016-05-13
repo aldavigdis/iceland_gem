@@ -208,7 +208,7 @@ class Kennitala
   # Sanitize the kennitala
   #
   # @param [String] kt_string Unsanitised string representing a kennitala
-  # @return [String] Sanitized kennitala
+  # @return [String, nil] Sanitized kennitala, nil if invalid
   def sanitize(kt_string)
     sanitized_kt = kt_string.gsub(/\D/, '')
     checks = check_checksum(sanitized_kt)
@@ -220,6 +220,9 @@ class Kennitala
     date = Date.new(year, month, day)
 
     return sanitized_kt if checks == true && date.class == Date
+
+  rescue ArgumentError, 'invalid date'
+    nil
   end
 
   # Calculate the checksum
