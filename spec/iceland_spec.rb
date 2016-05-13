@@ -48,68 +48,63 @@ describe Iceland do
 end
 
 describe Kennitala do
+  before(:context) do
+    @kt_person1 = Kennitala.new('0101302989')
+    @kt_company1 = Kennitala.new('4612023220')
+  end
   describe '.to_s' do
     it 'removes non-numeric characters from the kennitala string' do
-      kt = Kennitala.new('Mjá 🐈 kisa 010130-2989')
-      expect(kt.to_s).to eq('0101302989')
+      kt_with_junk = Kennitala.new('Mjá 🐈 kisa 010130-2989')
+      expect(kt_with_junk.to_s).to eq('0101302989')
     end
   end
   describe '.to_date' do
     # This should cover .year, .month and .day as well
     it 'casts the kennitala to a Date object' do
-      kt = Kennitala.new('0101302989')
-      expect(kt.to_date).to be_an_instance_of(Date)
+      expect(@kt_person1.to_date).to be_an_instance_of(Date)
     end
   end
 
   describe '.age' do
     it 'calculates the age of a person in years and returns it as a Fixnum' do
-      kt = Kennitala.new('0101302989')
-      y_diff = Date.today.year - kt.year
-      m_diff = Date.today.month - kt.month
-      d_diff = Date.today.month - kt.month
+      y_diff = Date.today.year - @kt_person1.year
+      m_diff = Date.today.month - @kt_person1.month
+      d_diff = Date.today.month - @kt_person1.month
       age = if m_diff < 0 || (m_diff == 0 && d_diff < 0)
               y_diff - 1
             else
               y_diff
             end
-      expect(kt.age).to eq(age)
+      expect(@kt_person1.age).to eq(age)
     end
     it 'calculates the age of a company in years and returns it as a Fixnum' do
-      kt = Kennitala.new('4612023220')
-      expect(kt.age).to be_an_instance_of(Fixnum)
+      expect(@kt_company1.age).to be_an_instance_of(Fixnum)
     end
   end
 
   describe '.company?' do
     it 'figures out a company kennitala' do
-      kt = Kennitala.new('4612023220')
-      expect(kt.company?).to eq(true)
+      expect(@kt_company1.company?).to eq(true)
     end
     it 'figures out a personal kennitala' do
-      kt = Kennitala.new('0101302989')
-      expect(kt.company?).to eq(false)
+      expect(@kt_person1.company?).to eq(false)
     end
   end
 
   describe '.person?' do
     it 'figures out a company kennitala' do
-      kt = Kennitala.new('4612023220')
-      expect(kt.person?).to eq(false)
+      expect(@kt_company1.person?).to eq(false)
     end
     it 'figures out a personal kennitala' do
-      kt = Kennitala.new('0101302989')
-      expect(kt.person?).to eq(true)
+      expect(@kt_person1.person?).to eq(true)
     end  end
 
   describe '.entity_type' do
     it 'identifies a person' do
-      kt = Kennitala.new('0101302989')
-      expect(kt.entity_type).to eq('person')
+      expect(@kt_person1.entity_type).to eq('person')
     end
     it 'identifies a company' do
-      kt = Kennitala.new('4612023220')
-      expect(kt.entity_type).to eq('company')
+      expect(@kt_company1.entity_type).to eq('company')
     end
   end
 end
