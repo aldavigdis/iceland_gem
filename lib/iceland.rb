@@ -71,7 +71,7 @@ class Kennitala
     century = (10 + @value[9].to_i) * 100
     year = @value[4, 2].to_i
     return century + year if (1800..1900).cover?(century)
-    return 2000 + year if century == 0
+    return 2000 + year if century == 1000
   end
 
   # Get the day of the month of birth or registration
