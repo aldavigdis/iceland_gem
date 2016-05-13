@@ -51,4 +51,37 @@ describe Iceland do
 end
 
 describe Kennitala do
+  describe '.to_s' do
+    it 'removes non-numeric characters from the kennitala string' do
+      kt = Kennitala.new('Mjá 🐈 kisa 010130-2989')
+      expect(kt.to_s).to eq('0101302989')
+    end
+  end
+  describe '.to_date' do
+    # This should cover .year, .month and .day as well
+    it 'casts the kennitala to a Date object' do
+      kt = Kennitala.new('0101302989')
+      expect(kt.to_date).to be_an_instance_of(Date)
+    end
+  end
+  describe '.age' do
+    it 'calculates the age of a person in years and returns it as a Fixnum' do
+      kt = Kennitala.new('0101302989')
+      expect(kt.age).to be_an_instance_of(Fixnum)
+    end
+    it 'calculates the age of a company in years and returns it as a Fixnum' do
+      kt = Kennitala.new('4612023220')
+      expect(kt.age).to be_an_instance_of(Fixnum)
+    end
+  end
+  describe '.entity_type' do
+    it 'identifies a person' do
+      kt = Kennitala.new('0101302989')
+      expect(kt.entity_type).to eq('person')
+    end
+    it 'identifies a company' do
+      kt = Kennitala.new('4612023220')
+      expect(kt.entity_type).to eq('company')
+    end
+  end
 end
