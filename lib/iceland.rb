@@ -47,7 +47,7 @@ end
 # The Kennitala Class
 class Kennitala
   def initialize(kt_string)
-    unless kt_string.is_a String
+    unless kt_string.class == String
       raise ArgumentError, 'Kennitala needs to be provided as a string'
     end
     sanitised_kt = sanitize(kt_string)
