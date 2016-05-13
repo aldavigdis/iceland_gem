@@ -12,21 +12,18 @@ describe Iceland do
       random_index = Random.rand(0..maxindex)
       expect(postal_codes[random_index][:postal_code]).to be_a Fixnum
     end
-
     it 'returns an array of hashes, including each locale' do
       postal_codes = Iceland.all_postal_codes
       maxindex = postal_codes.length - 1
       random_index = Random.rand(0..maxindex)
       expect(postal_codes[random_index][:locale]).to be_a String
     end
-
     it 'returns P.O. box postal codes when include_po_boxes is true' do
       postal_codes_without_boxes = Iceland.all_postal_codes
-      postal_codes_with_boxes = Iceland.all_postal_codes true
+      postal_codes_with_boxes = Iceland.all_postal_codes(true)
       expect(postal_codes_without_boxes.length < postal_codes_with_boxes.length)
         .to eq(true)
     end
-
     it 'returns the nomative form of locale when force_nominative is true' do
       postal_codes_dative = Iceland.all_postal_codes
       postal_codes_nomative = Iceland.all_postal_codes false, true
@@ -64,6 +61,7 @@ describe Kennitala do
       expect(kt.to_date).to be_an_instance_of(Date)
     end
   end
+
   describe '.age' do
     it 'calculates the age of a person in years and returns it as a Fixnum' do
       kt = Kennitala.new('0101302989')
@@ -74,6 +72,28 @@ describe Kennitala do
       expect(kt.age).to be_an_instance_of(Fixnum)
     end
   end
+
+  describe '.company?' do
+    it 'figures out a company kennitala' do
+      kt = Kennitala.new('4612023220')
+      expect(kt.company?).to eq(true)
+    end
+    it 'figures out a personal kennitala' do
+      kt = Kennitala.new('0101302989')
+      expect(kt.company?).to eq(false)
+    end
+  end
+
+  describe '.person?' do
+    it 'figures out a company kennitala' do
+      kt = Kennitala.new('4612023220')
+      expect(kt.person?).to eq(false)
+    end
+    it 'figures out a personal kennitala' do
+      kt = Kennitala.new('0101302989')
+      expect(kt.person?).to eq(true)
+    end  end
+
   describe '.entity_type' do
     it 'identifies a person' do
       kt = Kennitala.new('0101302989')
