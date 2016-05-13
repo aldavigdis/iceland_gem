@@ -69,15 +69,22 @@ f = Kennitala.new('010130-2979')
 k.to_s
 # => "0101302989"
 
-# Get the entity type (results in 'person' or 'entity')
+# Get the entity type (results in 'person' or 'company')
 k.entity_type
 # => "person"
+
+# It's also possible to use .is_company and .is_person to achieve the same thing
+k.is_company?
+# => false
+
+k.is_person?
+# => true
 
 # Get the birth date or registration day as a Date object
 k.to_date
 # => #<Date: 1930-01-01 ((2425978j,0s,0n),+0s,2299161j)>
 
-# Get the current age of entity. Useful for age restrictions.
+# Get the current age of the entity. Useful for age restrictions.
 k.age
 # => 86
 ```
@@ -102,6 +109,8 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/stefanvignir/iceland_gem.
+
+Do make sure that the `rspec` unit tests run before sending a pull request and write tests for any new functionality you add.
 
 ## License
 
