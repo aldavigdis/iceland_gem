@@ -57,11 +57,11 @@ class Kennitala
 
   # Get the type of entity - If it is a person or an organization
   #
-  # @return [String] Either 'person' or 'organization'
+  # @return [String] Either 'person' or 'company'
   def entity_type
     date_integer = @value[0, 2].to_i
     return 'person' if date_integer < 32
-    return 'organization' if (date_integer > 40) && (date_integer < 71)
+    return 'company' if (date_integer > 40) && (date_integer < 71)
   end
 
   # Get the year of birth or registration
