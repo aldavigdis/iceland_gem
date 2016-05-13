@@ -65,7 +65,15 @@ describe Kennitala do
   describe '.age' do
     it 'calculates the age of a person in years and returns it as a Fixnum' do
       kt = Kennitala.new('0101302989')
-      expect(kt.age).to be_an_instance_of(Fixnum)
+      y_diff = Date.today.year - kt.year
+      m_diff = Date.today.month - kt.month
+      d_diff = Date.today.month - kt.month
+      age = if m_diff < 0 || (m_diff == 0 && d_diff < 0)
+              y_diff - 1
+            else
+              y_diff
+            end
+      expect(kt.age).to eq(age)
     end
     it 'calculates the age of a company in years and returns it as a Fixnum' do
       kt = Kennitala.new('4612023220')
