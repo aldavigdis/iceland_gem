@@ -52,6 +52,18 @@ describe Kennitala do
     @kt_person1 = Kennitala.new('0101302989')
     @kt_company1 = Kennitala.new('4612023220')
   end
+  it 'generates a valid random personal kennitala if no string is provided' do
+    random_kt = Kennitala.new
+    expect(random_kt.person?).to eq(true)
+  end
+  it 'generates a valid random personal kennitala if kt_string equals false' do
+    random_kt = Kennitala.new(false)
+    expect(random_kt.person?).to eq(true)
+  end
+  it 'generates a valid random company kennitala if is_company equals true' do
+    random_kt = Kennitala.new(false, true)
+    expect(random_kt.company?).to eq(true)
+  end
   describe '.to_s' do
     it 'removes non-numeric characters from the kennitala string' do
       kt_with_junk = Kennitala.new('Mjá 🐈 kisa 010130-2989')
