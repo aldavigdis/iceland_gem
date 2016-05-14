@@ -1,4 +1,6 @@
-[![Build Status](https://travis-ci.org/stefanvignir/iceland_gem.svg)](https://travis-ci.org/stefanvignir/iceland_gem) [![Code Climate](https://codeclimate.com/github/stefanvignir/iceland_gem/badges/gpa.svg)](https://codeclimate.com/github/stefanvignir/iceland_gem)
+[![Build Status](https://travis-ci.org/stefanvignir/iceland_gem.svg)](https://travis-ci.org/stefanvignir/iceland_gem)
+[![Test Coverage](https://codeclimate.com/github/stefanvignir/iceland_gem/badges/coverage.svg)](https://codeclimate.com/github/stefanvignir/iceland_gem/coverage)
+[![Code Climate](https://codeclimate.com/github/stefanvignir/iceland_gem/badges/gpa.svg)](https://codeclimate.com/github/stefanvignir/iceland_gem)
 
 # The Iceland Gem
 
