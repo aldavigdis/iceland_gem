@@ -57,12 +57,18 @@ describe Kennitala do
     expect(random_kt.person?).to eq(true)
   end
   it 'enerates a valid random personal kennitala if kt_string equals false' do
-    random_kt = Kennitala.new(false)
-    expect(random_kt.person?).to eq(true)
+    invalid_count = 0
+    255.times do
+      invalid_count += 1 unless Kennitala.new(false).person?
+    end
+    expect(invalid_count).to eq(0)
   end
   it 'generates a valid random company kennitala if is_company equals true' do
-    random_kt = Kennitala.new(false, true)
-    expect(random_kt.company?).to eq(true)
+    invalid_count = 0
+    255.times do
+      invalid_count += 1 unless Kennitala.new(false, true).company?
+    end
+    expect(invalid_count).to eq(0)
   end
   it 'raises the correct argument error if the argument provided is not a '\
     'string or a boolean false' do
