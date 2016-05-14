@@ -52,7 +52,31 @@ Iceland.locale_by_postal_code 311, true
 
 The Iceland Gem provides a class to handle "kennitala" identifier codes. The class can be used to sanitize the identifiers and read information like the date of birth (or date of registration in the case of companies and organization), age and the type of entity.
 
+The class does not access external APIs or databases such National Registry or the Company Registry, so names and status (death, bankruptcy, credit rating etc.) cannot be accessed using the class. However, it can be used to sanitize and validate such data before being sent to external APIs, as such services are provided by private companies, which often charge a specific amount for each query.
+
+#### Uses of kennitala
+
+Unlike the US Social Security number and equivalents, the kennitala is only used for identification of persons and companies (as well as other registered organizations) — and is often used internally by educational institutions, companies and other organization as a primary identifier for persons (e.g. school, employee, customer and frequent flyer ID). It is not to be used for authentication (i.e. a password) and is not considered a secret per se, but publishing a kennitala or a list of them is generally not considered good practice.
+
+A kennitala is assigned to every newborn person and foreign nationals residing in Iceland as well as organizations and companies operating there. It is statically assigned and can not be changed.
+
+Article II, paragraph 10 of the 77/2000 Act on Data Protection (http://www.althingi.is/lagas/nuna/2000077.html) provides the legal framework regarding the use and processing of the kennitala in Iceland:
+
+> The use of a kennitala is allowed if it has a an objective cause and is necessary to ensure reliable identification of persons. The Data Protection Authority may ban or order the use of kennitala.
+
+#### Technicalities
+
+The kennitala (`DDMMYY-RRCM`) is a 10-digit numeric string consisting on a date (date of birth for persons, date of registration for companies) in the form of `DDMMYY`, three two random digits (`RR`) a check digit (`C`) and a century identifier (`M`). A hyphen or space is often added between the year and random values (Example: `010130-2989`).
+
+The number 40 is added to the registration day of companies and organizations. Hence, a kennitala for a company registered at January 1 1990 starts with `410190` as opposed to `010190` for a person born that day.
+
+The century identifier has 3 legal values. `8` for the 19th century, `9` for the 20th century and `0` for the 21st century.
+
+The check digit is described
+
 #### Examples
+
+##### Working with Kennitala objects
 
 ```ruby
 # Initialize a Kennitala object.
@@ -60,9 +84,13 @@ The Iceland Gem provides a class to handle "kennitala" identifier codes. The cla
 k = Kennitala.new('010130-2989')
 # => #<Kennitala:0x007fe35d041bc0 @value="0101302989">
 
-# Invalid strings are rejected
+# Invalid strings are rejected with an argument error
 f = Kennitala.new('010130-2979')
 # ArgumentError: Kennitala is invalid
+
+# If no kennitala string is specified, a random one will be generated
+r = Kennitala.new
+# => #<Kennitala:0x007fc589339f18 @value="2009155509">
 
 # Retrieve the kennitala as a string.
 # This is a sanitized string, without any non-numeric characters.
@@ -89,10 +117,22 @@ k.age
 # => 86
 ```
 
+####
+
+```ruby
+# Casting a string to a Kennitala object
+'0101302989'.to_kt
+# => #<Kennitala:0x007fc5893286a0 @value="0101302989">
+
+# Get the current age based on a String
+'0101302989'.to_kt.age
+# => 86
+```
+
 ## Todo
 
 * Administrative Divisions
-* A Kennitala faker, similar to ffaker and ffaker
+* Bank accounts
 
 ## About the data
 
@@ -110,7 +150,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/stefanvignir/iceland_gem.
 
-Do make sure that the `rspec` unit tests run before sending a pull request and write tests for any new functionality you add.
+Do make sure that the `rspec` unit tests run before sending a pull request (hint: try running `rspec` a couple of times in a row as some tests might fail randomly) and write tests for any new functionality you add. Also run `rubocop` to check if your code adheres to the Ruby Style Guide.
 
 ## License
 
