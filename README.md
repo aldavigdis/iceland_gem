@@ -117,7 +117,7 @@ k.age
 # => 86
 ```
 
-####
+#### Casting strings
 
 ```ruby
 # Casting a string to a Kennitala object
