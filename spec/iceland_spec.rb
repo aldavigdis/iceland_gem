@@ -56,7 +56,7 @@ describe Kennitala do
     random_kt = Kennitala.new
     expect(random_kt.person?).to eq(true)
   end
-  it 'generates a valid random personal kennitala if kt_string equals false' do
+  it 'enerates a valid random personal kennitala if kt_string equals false' do
     random_kt = Kennitala.new(false)
     expect(random_kt.person?).to eq(true)
   end
@@ -64,6 +64,12 @@ describe Kennitala do
     random_kt = Kennitala.new(false, true)
     expect(random_kt.company?).to eq(true)
   end
+  it 'raises the correct argument error if the argument provided is not a '\
+    'string or a boolean false' do
+      expect { Kennitala.new(461_202_322_0) }
+        .to raise_error(ArgumentError, 'Kennitala needs to be provided as a '\
+                                       'string')
+    end
   describe '.to_s' do
     it 'removes non-numeric characters from the kennitala string' do
       kt_with_junk = Kennitala.new('Mjá 🐈 kisa 010130-2989')
