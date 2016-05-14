@@ -119,6 +119,19 @@ describe Kennitala do
       expect(@kt_company1.entity_type).to eq('company')
     end
   end
+
+  describe '.pp' do
+    it 'uses a single space as the default spacer' do
+      expect(@kt_person1.pp).to eq('010130 2989')
+    end
+    it 'adds a specific spacer if specified' do
+      expect(@kt_person1.pp('-')).to eq('010130-2989')
+    end
+    it 'can handle emoji (or any multibyte utf-8 character) as a spacer' do
+      # Why? - Just because!
+      expect(@kt_person1.pp('🐈')).to eq('010130🐈2989')
+    end
+  end
 end
 
 describe String do

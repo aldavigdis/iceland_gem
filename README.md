@@ -96,8 +96,22 @@ r = Kennitala.new
 
 # Retrieve the kennitala as a string.
 # This is a sanitized string, without any non-numeric characters.
+# Pretty useful when storing it in a database.
 k.to_s
 # => "0101302989"
+
+# Pretty print the kennitala
+# Adds a space between the 6th and the 7th digits for readability
+k.pp
+# => "010130 2989"
+
+# You can also pass a string to .pp to use as a spacer
+k.pp('–')
+# => "010130-2989"
+
+# You can also pass a cat to the .pp method
+k.pp('🐈')
+# => "010130🐈2989"
 
 # Get the entity type (results in 'person' or 'company')
 k.entity_type

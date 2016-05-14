@@ -90,6 +90,17 @@ class Kennitala
     @value.to_s
   end
 
+  # Pretty print a kennitala
+  #
+  # Puts a spacer between the 6th and the 7th digit
+  #
+  # @param [String] spacer A single space by default
+  # @return [String]
+  def pp(spacer = ' ')
+    raise ArgumentError 'Spacer must be a string' unless spacer.class == String
+    @value[0, 6] + spacer + @value[6, 9]
+  end
+
   private
 
   # Generate fake a birth number and check digit based on the first 6 digits
