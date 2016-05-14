@@ -16,7 +16,7 @@ class Kennitala
   def entity_type
     date_integer = @value[0, 2].to_i
     return 'person' if date_integer < 32
-    return 'company' if (date_integer > 40) && (date_integer < 71)
+    return 'company' if (date_integer > 40) && (date_integer < 72)
   end
 
   # Check if the entity is a company
@@ -24,7 +24,7 @@ class Kennitala
   # @return [Boolean]
   def company?
     date_integer = @value[0, 2].to_i
-    return true if (date_integer > 40) && (date_integer < 71)
+    return true if (date_integer > 40) && (date_integer < 72)
     false
   end
 
