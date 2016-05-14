@@ -22,6 +22,8 @@ Or install it yourself as:
 
 ### Postal Codes
 
+Icelandic postal codes are 3-digit numeric identifiers, with the first digit indicating a region and the rest identifying a specific locale within the region.
+
 Names of locales are provided in dative form by default as per Icelandic postal convention, but nomative forms can be returned by setting the `force_nominative` parameter to `true` when using the `Iceland.all_postal_codes` and `Iceland.locale_by_postal_code` methods.
 
 (Note that we use the term "locale" as per Universal Postal Union convention to name town, city or other location the postal code is assigned to.)
