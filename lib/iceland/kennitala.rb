@@ -17,7 +17,6 @@ class Kennitala
     date_integer = @value[0, 2].to_i
     return 'person' if date_integer < 32
     return 'company' if (date_integer > 40) && (date_integer < 71)
-    false
   end
 
   # Check if the entity is a company
