@@ -30,7 +30,7 @@ class Kennitala
 
   # Check if the entity is a person
   #
-  # @return [Type] description of returned object
+  # @return [Boolean]
   def person?
     date_integer = @value[0, 2].to_i
     return true if date_integer < 32
@@ -149,6 +149,10 @@ class Kennitala
       month: month.to_s.rjust(2, '0'), day: day.to_s.rjust(2, '0') }
   end
 
+  # Generate a fake, random kennitala string
+  #
+  # @param [Boolean] is_company If the kennitala is for a company, not a person
+  # @return [String] A 10-digit string representing a kennitala
   def fake_kt_string(is_company = false)
     date_hash = fake_date_hash(is_company)
     randoms_hash = fake_randoms(date_hash)
@@ -159,6 +163,10 @@ class Kennitala
     first_six + randoms + date_hash[:century]
   end
 
+  # Get year from a kennitala string
+  #
+  # @param [String] kt_string Sanitized kennitala string
+  # @return [Fixnum] description of returned object
   def get_year_from_string(kt_string)
     century_code = kt_string[9, 1].to_i
     case century_code
@@ -202,6 +210,10 @@ class Kennitala
     checksum
   end
 
+  # Calculate the check digit for a kennitala
+  #
+  # @param [String] kt_string Sanitized kennitala
+  # @return [Fixnum]
   def calculate_check_digit(kt_string)
     remainder = checksum(kt_string).modulo(11)
 

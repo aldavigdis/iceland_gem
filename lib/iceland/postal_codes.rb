@@ -27,7 +27,7 @@ module Iceland
   #
   # @param [Integer, String] postal_code The postal code
   # @param [Boolean] force_nominative Display locale name in nomative form
-  # @return [String] description of returned object
+  # @return [String]
   def locale_by_postal_code(postal_code, force_nominative = false)
     postal_code = postal_code.to_i
     postal_code_hash = POSTAL_CODES[postal_code]
