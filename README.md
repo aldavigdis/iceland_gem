@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/stefanvignir/iceland_gem.svg)](https://travis-ci.org/stefanvignir/iceland_gem)
+
 # The Iceland Gem
 
 The Iceland Gem handles Icelandic "kennitala" personal/entity identifiers and Icelandic postal codes.
