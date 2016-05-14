@@ -74,8 +74,6 @@ The number 40 is added to the registration day of companies and organizations. H
 
 The century identifier has 3 legal values. `8` for the 19th century, `9` for the 20th century and `0` for the 21st century.
 
-The check digit is described
-
 #### Examples
 
 ##### Working with Kennitala objects
