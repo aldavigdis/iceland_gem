@@ -58,7 +58,7 @@ The class does not access external APIs or databases such National Registry or t
 
 #### Uses of kennitala
 
-Unlike the US Social Security number and equivalents, the kennitala is only used for identification of persons and companies (as well as other registered organizations) — and is often used internally by educational institutions, companies and other organization as a primary identifier for persons (e.g. school, employee, customer and frequent flyer ID). It is not to be used for authentication (i.e. a password) and is not considered a secret per se, but publishing a kennitala or a list of them is generally not considered good practice.
+Unlike the US Social Security number and equivalents, the kennitala is only used for identification of persons and companies (as well as other registered organizations) — and is often used internally by educational institutions, companies and other organization as a primary identifier for persons (e.g. school, employee, customer and frequent flyer ID). It is not to be used for authentication (i.e. a password) and is not considered a secret per se. While a kennitala can be kept unencrypted in a database, publishing a kennitala or a list of them is generally not considered good practice and might cause liability.
 
 A kennitala is assigned to every newborn person and foreign nationals residing in Iceland as well as organizations and companies operating there. It is statically assigned and can not be changed.
 
