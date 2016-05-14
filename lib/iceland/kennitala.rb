@@ -175,7 +175,7 @@ class Kennitala
   # @param [String] kt_string Unsanitised string representing a kennitala
   # @return [String, nil] Sanitized kennitala, nil if invalid
   def sanitize(kt_string)
-    sanitized_kt = kt_string.gsub(/\D/, '')
+    sanitized_kt = kt_string.gsub(/[^0-9]/, '')
     checks = check_checksum(sanitized_kt)
 
     year = get_year_from_string(sanitized_kt)
