@@ -90,6 +90,17 @@ class Kennitala
     @value.to_s
   end
 
+  # Pretty print a kennitala
+  #
+  # Puts a spacer between the 6th and the 7th digit
+  #
+  # @param [String] spacer A single space by default
+  # @return [String]
+  def pp(spacer = ' ')
+    raise ArgumentError 'Spacer must be a string' unless spacer.class == String
+    @value[0, 6] + spacer + @value[6, 9]
+  end
+
   private
 
   # Generate fake a birth number and check digit based on the first 6 digits
@@ -110,7 +121,7 @@ class Kennitala
 
   # Generate a fake year and century Hash
   #
-  # @return [Hash] description of returned object
+  # @return [Hash]
   def fake_year
     century = [9, 9, 9, 8, 0, 0].sample
     current_year = Date.today.strftime('%y').to_i
@@ -164,7 +175,7 @@ class Kennitala
   # @param [String] kt_string Unsanitised string representing a kennitala
   # @return [String, nil] Sanitized kennitala, nil if invalid
   def sanitize(kt_string)
-    sanitized_kt = kt_string.gsub(/\D/, '')
+    sanitized_kt = kt_string.gsub(/[^0-9]/, '')
     checks = check_checksum(sanitized_kt)
 
     year = get_year_from_string(sanitized_kt)
