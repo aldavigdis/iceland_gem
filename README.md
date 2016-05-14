@@ -38,6 +38,10 @@ Names of locales are provided in dative form by default as per Icelandic postal 
 Iceland.all_postal_codes
 # => [{:postal_code=>101, :locale=>"Reykjavík"}, {:postal_code=>103, [...]
 
+# Get the same postal codes in nomative form
+Iceland.all_postal_codes false, true
+# => [{:postal_code=>101, :locale=>"Reykjavík"}, {:postal_code=>103, [...]
+
 # Get all postal codes, including P.O. boxes
 Iceland.all_postal_codes true
 # => [{:postal_code=>101, :locale=>"Reykjavík"}, {:postal_code=>103, [...]
@@ -124,7 +128,7 @@ k.is_company?
 k.is_person?
 # => true
 
-# Get the birth date or registration day as a Date object
+# Cast the kennitala to a Date object
 k.to_date
 # => #<Date: 1930-01-01 ((2425978j,0s,0n),+0s,2299161j)>
 
