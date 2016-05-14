@@ -19,9 +19,7 @@ PreCommit:
  RuboCop:
    enabled: true
    on_warn: fail # Treat all warnings as failures
-
- TrailingWhitespace:
-   enabled: true
+   command: ['bundle', 'exec', 'rubocop']
 
 #PostCheckout:
 #  ALL: # Special hook name that customizes all hooks of this type
