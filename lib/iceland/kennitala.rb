@@ -121,7 +121,7 @@ class Kennitala
 
   # Generate a fake year and century Hash
   #
-  # @return [Hash] description of returned object
+  # @return [Hash]
   def fake_year
     century = [9, 9, 9, 8, 0, 0].sample
     current_year = Date.today.strftime('%y').to_i
