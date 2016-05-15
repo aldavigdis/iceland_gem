@@ -172,7 +172,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/stefanvignir/iceland_gem.
 
-Do make sure that the `rspec` unit tests run before sending a pull request (hint: try running `rspec` a couple of times in a row as some tests might fail randomly) and write tests for any new functionality you add. Also run `rubocop` to check if your code adheres to the Ruby Style Guide.
+Do make sure that the `rspec` unit tests run before sending a pull request and write tests for any new functionality you add. Also run `rubocop` to check if your code adheres to the Ruby Style Guide and other conventions.
 
 ## License
 
