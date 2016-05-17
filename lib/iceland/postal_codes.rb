@@ -1,5 +1,6 @@
 # Postal Codes
 module Iceland
+  # Load the postal code data to a constant
   POSTAL_CODES = YAML.load_file(File.expand_path('../../postcodes.yml',
                                                  __FILE__))
 

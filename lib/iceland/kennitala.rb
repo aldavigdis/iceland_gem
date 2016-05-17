@@ -1,10 +1,26 @@
 # The Kennitala Class
 class Kennitala
-  # Description of method
+  # Initialize a Kennitala object
   #
-  # @param [String, Boolean] kt_string = false describe kt_string = false
-  # @param [Boolean] is_company = false describe is_company = false
+  # @note The string provided may include spaces, hyphens and alphabetical
+  #       characters, which will then be erased from the resulting string.
+  #
+  # @param [String, Boolean] kt_string Either Kennitala String or Boolean false.
+  # @param [Boolean] is_company Wether the randomly generated kennitala is
+  #                  for a company
   # @return [Kennitala] description of returned object
+  #
+  # @example Initialize a Kennitala object based on an unsanitized String
+  #          Kennitala.new(' 010130-2989')
+  #          => #<Kennitala:0x007fe35d041bc0 @value="0101302989">
+  #
+  # @example Invalid strings are rejected with an argument error
+  #          Kennitala.new('010130-2979')
+  #          => ArgumentError: Kennitala is invalid
+  #
+  # @example If no kennitala string is specified, a random one will be generated
+  #          Kennitala.new
+  #          => #<Kennitala:0x007fc589339f18 @value="2009155509">
   def initialize(kt_string = false, is_company = false)
     kt_string = fake_kt_string(is_company) if kt_string == false
     unless kt_string.class == String
@@ -19,6 +35,12 @@ class Kennitala
   # Get the type of entity - If it is a person or an organization
   #
   # @return [String] Either 'person' or 'company'
+  #
+  # @example Get the entity type (results in 'person' or 'company')
+  #          k = Kennitala.new('0101302989')
+  #          => #<Kennitala:0x007fe35d041bc0 @value="0101302989">
+  #          k.entity_type
+  #          => "person"
   def entity_type
     date_integer = @value[0, 2].to_i
     return 'person' if date_integer < 32
@@ -72,6 +94,12 @@ class Kennitala
   # Get the age of entity in years. Useful when dealing with age restrictions.
   #
   # @return [Fixnum]
+  #
+  # @example Get the current age of the entity
+  #          k = Kennitala.new('0101302989')
+  #          => #<Kennitala:0x007fe35d041bc0 @value="0101302989">
+  #          k.age
+  #          => 86
   def age
     year_diff = Date.today.year - to_date.year
     month_diff = Date.today.month - to_date.month
@@ -84,23 +112,41 @@ class Kennitala
   # Cast the kennitala to a Date object
   #
   # @return [Date]
+  #
+  # @example Cast the kennitala to a Date object
+  #          k = Kennitala.new('0101302989')
+  #          => #<Kennitala:0x007fe35d041bc0 @value="0101302989">
+  #          k.to_date
+  #          => #<Date: 1930-01-01 ((2425978j,0s,0n),+0s,2299161j)>
   def to_date
     Date.new(year, month, day)
   end
 
   # Cast the kennitala to a String object
   #
-  # @return [Date]
+  # @return [String]
   def to_s
     @value.to_s
   end
 
   # Pretty print a kennitala
   #
-  # Puts a spacer between the 6th and the 7th digit
+  # Adds a space between the 6th and the 7th digits for readability.
   #
   # @param [String] spacer A single space by default
   # @return [String]
+  #
+  # @example Pretty print a Kennitala it its default form
+  #          k = Kennitala.new('0101302989')
+  #          => #<Kennitala:0x007fc589339f18 @value="2009155509">
+  #          k.pp
+  #          => "010130 2989"
+  #
+  # @example Use a hyphen as a spacer instead of the default single space
+  #          k = Kennitala.new('0101302989')
+  #          => #<Kennitala:0x007fc589339f18 @value="2009155509">
+  #          k.pp('-')
+  #          => "010130-2989"
   def pp(spacer = ' ')
     raise ArgumentError 'Spacer must be a string' unless spacer.class == String
     @value[0, 6] + spacer + @value[6, 9]

@@ -95,7 +95,7 @@ k = Kennitala.new(' 010130-2989')
 
 # Invalid strings are rejected with an argument error
 f = Kennitala.new('010130-2979')
-# ArgumentError: Kennitala is invalid
+# => ArgumentError: Kennitala is invalid
 
 # If no kennitala string is specified, a random one will be generated
 r = Kennitala.new
@@ -124,11 +124,11 @@ k.pp('🐈')
 k.entity_type
 # => "person"
 
-# It's also possible to use .is_company and .is_person to achieve the same thing
-k.is_company?
+# It's also possible to use .company and .person to achieve the same thing
+k.company?
 # => false
 
-k.is_person?
+k.person?
 # => true
 
 # Cast the kennitala to a Date object
