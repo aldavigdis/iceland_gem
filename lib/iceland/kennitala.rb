@@ -3,7 +3,8 @@ class Kennitala
   def initialize(kt_string = false, is_company = false)
     kt_string = fake_kt_string(is_company) if kt_string == false
     unless kt_string.class == String
-      raise ArgumentError, 'Kennitala needs to be provided as a string'
+      raise ArgumentError, 'Kennitala needs to be provided as a String or '\
+                           'Boolean (false)'
     end
     sanitised_kt = sanitize(kt_string)
     raise ArgumentError, 'Kennitala is invalid' if sanitised_kt.nil?

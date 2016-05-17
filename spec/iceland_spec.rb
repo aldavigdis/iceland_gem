@@ -74,7 +74,7 @@ describe Kennitala do
     'string or a boolean false' do
       expect { Kennitala.new(461_202_322_0) }
         .to raise_error(ArgumentError, 'Kennitala needs to be provided as a '\
-                                       'string')
+                                       'String or Boolean (false)')
     end
   describe '.to_s' do
     it 'removes non-numeric characters from the kennitala string' do
