@@ -1,5 +1,10 @@
 # The Kennitala Class
 class Kennitala
+  # Description of method
+  #
+  # @param [String, Boolean] kt_string = false describe kt_string = false
+  # @param [Boolean] is_company = false describe is_company = false
+  # @return [Kennitala] description of returned object
   def initialize(kt_string = false, is_company = false)
     kt_string = fake_kt_string(is_company) if kt_string == false
     unless kt_string.class == String
@@ -133,6 +138,8 @@ class Kennitala
   end
 
   # Generate a fake hash that includes randomly generated date elements
+  #
+  # @todo Take leap years into account and thus allow for 29 February
   #
   # @param [Boolean] is_company true if the day string is for a company
   # @return [Hash]

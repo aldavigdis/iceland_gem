@@ -30,7 +30,7 @@ Icelandic postal codes are 3-digit numeric identifiers, with the first digit ind
 
 Names of locales are provided in dative form by default as per Icelandic postal convention, but nomative forms can be returned by setting the `force_nominative` parameter to `true` when using the `Iceland.all_postal_codes` and `Iceland.locale_by_postal_code` methods.
 
-(Note that we use the term "locale" as per Universal Postal Union convention to name town, city or other location the postal code is assigned to.)
+(Note that we use the term "locale" as per Universal Postal Union convention to name the town, city or other location the postal code is assigned to.)
 
 #### Examples
 
@@ -62,7 +62,7 @@ Iceland.locale_by_postal_code 311, true
 
 The Iceland Gem provides a class to handle "kennitala" identifier codes. The class can be used to sanitize the identifiers and read information like the date of birth (or date of registration in the case of companies and organization), age and the type of entity.
 
-The class does not access external APIs or databases such National Registry or the Company Registry, so names and status (death, bankruptcy, credit rating etc.) cannot be accessed using the class. However, it can be used to sanitize and validate such data before being sent to external APIs, as such services are provided by private companies, which often charge a specific amount for each query.
+The class does not access external APIs or databases such National Registry or the Company Registry, so names and status (sex/gender, death, bankruptcy, credit rating etc.) cannot be accessed using the class. However, it can be used to sanitize and validate such data before being sent to external APIs, as such services are provided by private companies, which often charge a specific amount for each query.
 
 #### Uses of kennitala
 
@@ -88,8 +88,9 @@ The century identifier has 3 legal values. `8` for the 19th century, `9` for the
 
 ```ruby
 # Initialize a Kennitala object.
-# The string provided may include spaces and hyphens.
-k = Kennitala.new('010130-2989')
+# The string provided may include spaces, hyphens and alphabetical characters,
+# which will then be erased from the resulting string.
+k = Kennitala.new(' 010130-2989')
 # => #<Kennitala:0x007fe35d041bc0 @value="0101302989">
 
 # Invalid strings are rejected with an argument error
@@ -143,7 +144,7 @@ k.age
 
 ```ruby
 # Casting a string to a Kennitala object
-'0101302989'.to_kt
+'010130 2989'.to_kt
 # => #<Kennitala:0x007fc5893286a0 @value="0101302989">
 
 # Get the current age based on a String
@@ -155,6 +156,7 @@ k.age
 
 * Administrative Divisions
 * Bank accounts
+* Car plate numbers
 
 ## About the data
 
