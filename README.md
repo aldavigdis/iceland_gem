@@ -37,24 +37,24 @@ Names of locales are provided in dative form by default as per Icelandic postal 
 ```ruby
 # Get all postal codes, skipping codes assigned to P.O. boxes.
 # This is useful when generating forms.
-Iceland.all_postal_codes
+Iceland::PostalCode.list
 # => [{:postal_code=>101, :locale=>"Reykjavík"}, {:postal_code=>103, [...]
 
 # Get the same postal codes in nomative form
-Iceland.all_postal_codes false, true
+Iceland::PostalCode.list(nominative: true)
 # => [{:postal_code=>101, :locale=>"Reykjavík"}, {:postal_code=>103, [...]
 
 # Get all postal codes, including P.O. boxes
-Iceland.all_postal_codes true
+Iceland::PostalCode.list(include_po_boxes: true)
 # => [{:postal_code=>101, :locale=>"Reykjavík"}, {:postal_code=>103, [...]
 
 # Get the name of locale based on its postal code.
 # This is useful when you only save the postal code, but not the locale in a database.
-Iceland.locale_by_postal_code 311
+Iceland::PostalCode.find_locale(311)
 # => "Borgarnesi (dreifbýli)"
 
 # Get the name of the locale in nominative form
-Iceland.locale_by_postal_code 311, true
+Iceland.find_locale(postal_code: 311, nominative: true)
 # => "Borgarnes (dreifbýli)"
 ```
 
@@ -90,15 +90,15 @@ The century identifier has 3 legal values. `8` for the 19th century, `9` for the
 # Initialize a Kennitala object.
 # The string provided may include spaces, hyphens and alphabetical characters,
 # which will then be erased from the resulting string.
-k = Kennitala.new(' 010130-2989')
+k = Iceland::Kennitala.new(' 010130-2989')
 # => #<Kennitala:0x007fe35d041bc0 @value="0101302989">
 
 # Invalid strings are rejected with an argument error
-f = Kennitala.new('010130-2979')
+f = Iceland::Kennitala.new('010130-2979')
 # => ArgumentError: Kennitala is invalid
 
 # If no kennitala string is specified, a random one will be generated
-r = Kennitala.new
+r = Iceland::Kennitala.new
 # => #<Kennitala:0x007fc589339f18 @value="2009155509">
 
 # Retrieve the kennitala as a string.
@@ -154,9 +154,9 @@ k.age
 
 ## Todo
 
-* Administrative Divisions
-* Bank accounts
-* Car plate numbers
+* Split the gem into modules and make the this gem a collection gem, depending on and thus including all the others
+* Initialization ob objects and instance methods for the `Iceland::PostalCode` class
+* Add Administrative Divisions
 
 ## About the data
 
