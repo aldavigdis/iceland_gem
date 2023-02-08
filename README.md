@@ -179,3 +179,5 @@ Do make sure that the `rspec` unit tests run before sending a pull request and w
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+
+(Let's see if this works.)
