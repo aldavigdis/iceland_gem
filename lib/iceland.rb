@@ -1,7 +1,5 @@
-require 'date'
-require 'yaml'
+# frozen_string_literal: true
 
-require 'iceland/version'
-require 'iceland/postal_codes'
-require 'iceland/kennitala'
-require 'iceland/kennitala_string'
+class Iceland
+  VERSION = '2.0.0'
+end
